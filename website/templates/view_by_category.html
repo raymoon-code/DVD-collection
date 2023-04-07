@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}View DVDs by Category{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 align="center">DVDs in {{ category }}</h1>
+    <hr>
+    <form method="GET">
+      <div class="form-group">
+        <label for="category">Select a category:</label>
+        <select class="form-control" id="category" name="category">
+          <option value="All">All</option>
+          <option value="Action">Action</option>
+          <option value="Drama">Drama</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Horror">Horror</option>
+        </select>
+      </div>
+      <div align="center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    <br>
+    <ul class="list-group list-group-flush" id="dvds">
+      {% for dvd in dvds %}
+        <li class="list-group-item">
+          <strong>{{ dvd.title }}</strong>
+          <ul>
+            <li>Category: {{ dvd.category }}</li>
+            <li>Running Time: {{ dvd.running_time }} Mins.</li>
+            <li>Year of Release: {{ dvd.year_of_release }}</li>
+            <li>Price: ${{ dvd.price }}</li>
+          </ul>
+          <div align="right">
+            <a href="{{ url_for('dvd.edit_dvd', id=dvd.id) }}" class="btn btn-info">Edit</a>
+            <a href="{{ url_for('dvd.remove_dvd', id=dvd.id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this DVD?')">Remove</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

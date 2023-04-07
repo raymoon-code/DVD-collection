@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+    DVD Collection - View DVDs
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <style>
+       .addd {
+  width: 500px;
+  margin: auto;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #888888;
+}
+
+.addd h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.addd label {
+  display: inline-block;
+  width: 150px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.addd input[type="text"] {
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.addd input[type="submit"] {
+    margin-left: 200px;
+    align-items: center;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.addd input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+    </style>
+<head>
+    <title>Add DVD</title>
+</head>
+<body>
+    <div class="addd">
+    <h1>Add DVD</h1>
+    <form method="POST" action="{{ url_for('dvd.add_dvd') }}">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required><br><br>
+        <label for="running_time">Running Time:</label>
+        <input type="text" id="running_time" name="running_time" required><br><br>
+        <label for="year">Year of Release:</label>
+        <input type="text" id="year" name="year" required><br><br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required><br><br>
+        <input type="submit" value="Add">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

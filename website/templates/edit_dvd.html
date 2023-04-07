@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title%} Edit DVD {% endblock %}
+{% block content%} 
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit DVD</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ dvd.title }}">
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" id="category" name="category" value="{{ dvd.category }}">
+            </div>
+            <div class="form-group">
+                <label for="running_time">Running Time</label>
+                <input type="text" class="form-control" id="running_time" name="running_time" value="{{ dvd.running_time }}">
+            </div>
+            <div class="form-group">
+                <label for="year">Year of Release</label>
+                <input type="text" class="form-control" id="year" name="year" value="{{ dvd.year }}">
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" name="price" value="{{ dvd.price }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

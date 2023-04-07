@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+    DVD Collection - View DVDs
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+    .viewdvds{
+        margin-left: 200px;
+    }
+    .btn-outline-dark {
+    margin-left: 10px;
+    height: 38.48px;
+    width: 61.41;
+    color: #ffffff;
+    background-color: rgb(26, 212, 26);
+    border-color: #3fafa6;
+}
+
+.btn-outline-dark:hover {
+    color: #ffffff;
+    background-color: #36962d;
+    border-color: #08b1ff;
+}
+</style>
+<div class="viewdvds">
+    <h1>View DVDs</h1>
+    <form method="POST" class="form-inline">
+        <div class="form-group mr-2">
+            
+          <label for="category-select">Select Category:  </label>
+          <select class="form-control" id="category-select" name="category">
+           
+            
+                <option value="" disabled selected hidden>All Category</option>                
+                <option value="{{ url_for('dvd.view_by_category', category='Action') }}">Action</option>
+                <option value="{{ url_for('dvd.view_by_category', category='Comedy') }}">Comedy</option>
+                <option value="{{ url_for('dvd.view_by_category', category='Drama') }}">Drama</option>
+                <option value="{{ url_for('dvd.view_by_category', category='Romance') }}">Romance</option>
+                <option value="{{ url_for('dvd.view_by_category', category='Sci-Fi') }}">Sci-Fi</option>
+            
+            {% for c in categories %}
+            <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+        
+        <button type="submit" name="sort_by_year" class="btn btn-sm btn-outline-dark float-right"><i class="fas fa-sort-numeric-up"></i>Sort by Year</button>
+          
+      </form>
+      
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Running Time</th>
+                <th>Year of Release</th>
+                <th>Price</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for dvd in dvds %}
+                <tr>
+                    <td>{{ dvd.title }}</td>
+                    <td>{{ dvd.category }}</td>
+                    <td>{{ dvd.running_time }}</td>
+                    <td>{{ dvd.year }}</td>
+                    <td>{{ dvd.price }}</td>
+                    <td>
+                        <a href="{{ url_for('dvd.edit_dvd', id=dvd.id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form method="POST" action="{{ url_for('dvd.remove_dvd', id=dvd.id) }}" method="POST" class="d-inline-block">
+                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this DVD?')">Remove</button>
+                        </form>
+                      </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html"%} {% block title%} Log in {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log In</title>
+    <style>
+        /* Styling for the form */
+        form {
+            width: 400px;
+            margin: 50px auto;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #a544d1;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #8442b7;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/login">
+        <h2>Log In</h2>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Sign In">
+    </form>
+</body>
+</html>
+
+{% endblock %}
