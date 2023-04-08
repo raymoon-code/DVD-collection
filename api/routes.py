@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import DVD
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+import traceback
 
 dvd = Blueprint('dvd', __name__)
 
@@ -22,27 +23,35 @@ def add_dvd():
 
 @dvd.route('/remove-dvd/<int:id>', methods=['GET', 'POST'])
 def remove_dvd(id):
-    dvd = DVD.query.get_or_404(id)
-    if request.method == 'POST':
-        db.session.delete(dvd)
-        db.session.commit()
-        flash('DVD removed successfully!', category='success')
-        return redirect(url_for('dvd.view_dvds'))
-    return render_template('confirm_remove.html', dvd=dvd)
+    try:
+        dvd = DVD.query.get_or_404(id)
+        if request.method == 'POST':
+            db.session.delete(dvd)
+            db.session.commit()
+            flash('DVD removed successfully!', category='success')
+            return redirect(url_for('dvd.view_dvds'))
+        return render_template('confirm_remove.html', dvd=dvd)
+    except Exception as e:
+        error_message = traceback.format_exc()
+        return render_template('error.html', error=error_message)
 
 @dvd.route('/edit-dvd/<int:id>', methods=['GET', 'POST'])
 def edit_dvd(id):
-    dvd = DVD.query.get_or_404(id)
-    if request.method == 'POST':
-        dvd.title = request.form.get('title')
-        dvd.category = request.form.get('category')
-        dvd.running_time = request.form.get('running_time')
-        dvd.year = request.form.get('year')
-        dvd.price = request.form.get('price')
-        db.session.commit()
-        flash('DVD updated successfully!', category='success')
-        return redirect(url_for('dvd.view_dvds'))
-    return render_template("edit_dvd.html",user=current_user, dvd=dvd)
+    try:
+        dvd = DVD.query.get_or_404(id)
+        if request.method == 'POST':
+            dvd.title = request.form.get('title')
+            dvd.category = request.form.get('category')
+            dvd.running_time = request.form.get('running_time')
+            dvd.year = request.form.get('year')
+            dvd.price = request.form.get('price')
+            db.session.commit()
+            flash('DVD updated successfully!', category='success')
+            return redirect(url_for('dvd.view_dvds'))
+        return render_template("edit_dvd.html",user=current_user, dvd=dvd)
+    except Exception as e:
+        error_message = traceback.format_exc()
+        return render_template('error.html', error=error_message)
 
 @dvd.route('/view-dvds', methods=['GET', 'POST'])
 def view_dvds():
