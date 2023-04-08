@@ -8,6 +8,7 @@ DB_NAME = 'database.db'
 
 def create_app():
     app = Flask(__name__)
+    
     app.config['SECRET_KEY'] = 'RAYMOON'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
@@ -31,7 +32,7 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id))
+        return User.query.get(int(float(id)))
     
     return app
 
