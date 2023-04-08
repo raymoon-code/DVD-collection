@@ -1,12 +1,12 @@
 {
     "version":2,
     "builds":[{
-        "src": "./index.py",
+        "src": "DVD-collection/index.py",
         "use":"vercel/python"
     }],
     "routes":[{
         "src": "/(.*)",
-        "dest": "./index.py"
+        "dest": "DVD-collection/index.py"
     }],
     
 }
