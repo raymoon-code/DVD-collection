@@ -3,6 +3,15 @@ from .models import DVD
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import traceback
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+DB_NAME = 'database.db'
+app.config['SECRET_KEY'] = 'RAYMOON'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 dvd = Blueprint('dvd', __name__)
 
@@ -45,6 +54,10 @@ def edit_dvd(id):
             dvd.running_time = request.form.get('running_time')
             dvd.year = request.form.get('year')
             dvd.price = request.form.get('price')
+            with app.app_context():
+                # dvd = DVD.query.get_or_404(id)
+                # dvd.title = request.form.get('title')
+                db.session.commit()
             db.session.commit()
             flash('DVD updated successfully!', category='success')
             return redirect(url_for('dvd.view_dvds'))
