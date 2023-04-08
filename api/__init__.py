@@ -10,7 +10,6 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'RAYMOON'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-#     db = SQLAlchemy(app)
     db.init_app(app)
 
     from .views import views
