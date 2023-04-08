@@ -1,5 +1,5 @@
 
-from website import create_app
+from api import create_app
 # from website import create_database
 # from website import db
 
