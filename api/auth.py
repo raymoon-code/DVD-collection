@@ -3,6 +3,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
+import traceback
 
 auth = Blueprint('auth', __name__)
 
@@ -32,19 +33,25 @@ def logout():
 
 @auth.route('/signup',methods=['GET','POST'])
 def signup():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        confirm_password = request.form.get('confirm_password')
-        new_user = User.query.filter_by(username=username).first()
-        if password !=confirm_password:
-            flash('password and confirm password does not match.', category='error')
-        else:
-            new_user = User(username= username, password=generate_password_hash(password,method='sha256') )
-            db.session.add(new_user)
-            db.session.commit()     
-            login_user(new_user, remember=True)   
-            flash('Account created!', category='success')
-            return redirect(url_for('views.home'))
-        # user = request.form.get('username')
-    return render_template("signup.html",user=current_user)
+    try:
+        if request.method == 'POST':
+            username = request.form.get('username')
+            password = request.form.get('password')
+            confirm_password = request.form.get('confirm_password')
+            new_user = User.query.filter_by(username=username).first()
+            if password !=confirm_password:
+                flash('password and confirm password does not match.', category='error')
+            elif new_user:
+                flash('Username already exists', category='error')
+            else:
+                new_user = User(username= username, password=generate_password_hash(password,method='sha256') )
+                db.session.add(new_user)
+                db.session.commit()     
+                login_user(new_user, remember=True)   
+                flash('Account created!', category='success')
+                return redirect(url_for('views.home'))
+            # user = request.form.get('username')
+        return render_template("signup.html",user=current_user)
+    except Exception as e:
+        error_message = traceback.format_exc()
+        return render_template('error.html', error=error_message)

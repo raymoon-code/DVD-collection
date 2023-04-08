@@ -1,15 +1,13 @@
 {
     "version":2,
     "builds":[{
-        "src": "/main.py",
+        "src": "/wsgi.py",
         "use": "@vercel/python"
     }],
-    "reoutes":[{
+    "routes":[{
         "src": "/(.*)",
-        "dest": "/main.py"
-    }],
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/main.py" }
-      ]
+        "dest": "/wsgi.py"
+    }]
+
 
 }
