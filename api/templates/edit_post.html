@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Edit Post
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit Post</h1>
+        <form method="POST" class="post-form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="{{ post.title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="opening">Opening</label>
+                <textarea id="opening" name="opening" required>{{ post.opening }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="product">Products</label>
+                <select id="product" name="product" multiple>
+                    {% for product in products %}
+                        <option value="{{ product.id }}" {% if product.id in post.product_ids.split(',') %}selected{% endif %}>{{ product }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="conclusion">Conclusion</label>
+                <textarea id="conclusion" name="conclusion" required>{{ post.conclusion }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Post</button>
+        </form>
+    </div>
+{% endblock %}

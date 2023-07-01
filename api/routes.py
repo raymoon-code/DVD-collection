@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import DVD
+from .models import DVD,Product,Post
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import traceback
@@ -29,6 +29,22 @@ def add_dvd():
         flash('DVD added successfully!', category='success')
         # return redirect(url_for('dvd.view_dvds'))
     return render_template("add_dvd.html",user=current_user)
+
+@dvd.route('/add-product', methods=['GET', 'POST'])
+def add_product():
+    if request.method == 'POST':
+        title = request.form['title']
+        price = float(request.form['price'])
+        description = request.form['description']
+        image_url = request.form['image_url']
+        amazon_link = request.form['amazon_link']
+
+        new_product = Product(title=title, price=price, description=description, image_url=image_url, amazon_link=amazon_link)
+        db.session.add(new_product)
+        db.session.commit()
+        flash('Product added to the database!', category='success')
+        
+    return render_template('add_product.html',user=current_user)
 
 @dvd.route('/remove-dvd/<int:id>', methods=['GET', 'POST'])
 def remove_dvd(id):
@@ -66,6 +82,12 @@ def edit_dvd(id):
         error_message = traceback.format_exc()
         return render_template('error.html', error=error_message)
 
+@dvd.route('/view-products')
+def view_products():
+    products = Product.query.all()
+    return render_template('products.html',user=current_user, products=products)
+
+
 @dvd.route('/view-dvds', methods=['GET', 'POST'])
 def view_dvds():
     categories = set([dvd.category for dvd in DVD.query.all()])
@@ -87,13 +109,55 @@ def view_by_category(category):
     dvds = DVD.query.filter_by(category=category).all()
     return render_template("view_by_category.html",user=current_user, dvds=dvds)
 
-# @dvd.route('/view-by-category', methods=['GET', 'POST'])
-# def view_by_category():
-#     if request.method == 'POST':
-#         category = request.form.get('category')
-#         dvds = DVD.query.filter_by(category=category).all()
-#         return render_template("view_by_category.html", user=current_user, dvds=dvds)
-#     return render_template("view_by_category.html", user=current_user)
+@dvd.route('/create-post', methods=['GET', 'POST'])
+def create_post():
+    if request.method == 'POST':
+        title = request.form['title']
+        opening = request.form['opening']
+        product_ids = request.form.getlist('product')
+        conclusion = request.form['conclusion']
+        
+        post = Post(title=title, opening=opening, product_ids=','.join(product_ids), conclusion=conclusion)
+        db.session.add(post)
+        db.session.commit()
+        flash('post created successfully!', category='success')
+        # return render_template('view_posts.html',user=current_user, post=post)
+    
+    products = Product.query.all()
+    return render_template('create_post.html',user=current_user, products=products)
+
+@dvd.route('/posts')
+def view_posts():
+    posts = Post.query.all()
+    products = Product.query.all()
+    return render_template('view_posts.html',user=current_user, posts=posts,products=products)
+
+@dvd.route('/edit-post/<int:post_id>', methods=['GET', 'POST'])
+def edit_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    products = Product.query.all()
+
+    if request.method == 'POST':
+        post.title = request.form['title']
+        post.opening = request.form['opening']
+        post.product_ids = ','.join(request.form.getlist('product'))
+        post.conclusion = request.form['conclusion']
+        
+        db.session.commit()
+        flash('Post updated successfully!', category='success')
+        return redirect(url_for('dvd.view_posts'))
+
+    return render_template('edit_post.html', user=current_user, post=post, products=products)
+
+
+@dvd.route('/delete-post/<int:post_id>', methods=['POST'])
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Post deleted successfully!', category='success')
+    return redirect(url_for('dvd.view_posts'))
+    # return render_template('confirm_remove.html', dvd=dvd, user=current_user)
 
 
 @dvd.route('/view-by-year')

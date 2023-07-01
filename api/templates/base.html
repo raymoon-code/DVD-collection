@@ -22,43 +22,6 @@
             background-color: #ddd;
             color: rgb(185, 101, 185);
         }
-        /* .navbar button {
-            float: right;
-            margin-right: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 17px;
-        }
-
-        .navbar button:hover {
-            background-color: #45a049;
-        } */
-
-        /* .sidebar {
-            height: 100%;
-            width: 200px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #c26cd8;
-            overflow-x: hidden;
-            padding-top: 20px;
-        } */
-        /* .sidebar a {
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
-            font-size: 20px;
-            color: #818181;
-            display: block;
-        } */
-        /* .sidebar a:hover {
-            color: #f1f1f1;
-        } */
 
         .navbar .right {
             float: right;
@@ -69,7 +32,7 @@
         .content {
             /* margin-left: 200px; */
             padding: 1px 16px;
-            height: 1000px; /* Temporary height for demonstration purposes */
+            height: 1000px; 
         }
     </style>
 </head>
@@ -78,8 +41,12 @@
     <div class="navbar">
         {% if user.is_authenticated %}
         <a href="/">Home</a>    
-        <a href="/add-dvd">add DVDs</a> 
-        <a href="/view-dvds">DVDs list</a>         
+        <a href="/add-dvd">Top 10 Camping Products on Amazon</a> 
+        <a href="/add-product">add product</a>
+        <a href="/create-post">create post</a> 
+        <a href="/view-dvds">DVDs list</a>
+        <a href="/posts">posts</a>
+        <a href="/view-products">Products list</a>          
         <div class="right">        
         <a href="/logout">Logout</a>
         </div> 
@@ -97,17 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </div>
-    <!-- <div class="collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav">
-          {% if user.is_authenticated %}
-          <a class="nav-item nav-link" id="home" href="/">Home</a>
-          <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-          {% else %}
-          <a class="nav-item nav-link" id="login" href="/login">Login</a>
-          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-          {% endif %}
-        </div>
-      </div> -->
+
 
 {% with messages = get_flashed_messages(with_categories=true)%}
 {% if messages%}

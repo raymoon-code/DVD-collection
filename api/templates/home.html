@@ -1,44 +1,131 @@
-{% extends "base.html"%} {% block title%} Home {% endblock %}
+{% extends "base.html" %}
+{% block title %}Top 20 Products on Amazon - 2023{% endblock %}
 {% block content %}
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         body {
-    margin: 0;
-    padding: 0;
-}
-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-      }
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .intro {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-card {
+            width: 250px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .product-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product-title {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .product-price {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .product-description {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .product-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .product-link:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            padding-bottom: 40px;
+        }
     </style>
-<head>
-    <title>Add DVD</title>
 </head>
 <body>
-    <h1>Welcome to my DVD Collection App</h1>
-    <img src="https://cdn.discordapp.com/attachments/779982015398936589/1093814504145571930/wallpaperflare.com_wallpaper.jpg" alt="DVD Collection App Image">
-    <!-- <h1>Add DVD</h1>
-    <form method="POST" action="{{ url_for('dvd.add_dvd') }}">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required><br><br>
-        <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required><br><br>
-        <label for="running_time">Running Time:</label>
-        <input type="text" id="running_time" name="running_time" required><br><br>
-        <label for="year">Year of Release:</label>
-        <input type="text" id="year" name="year" required><br><br>
-        <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required><br><br>
-        <input type="submit" value="Add">
-    </form> -->
+    <div class="container">
+        <div class="header">
+            <h1>Top 20 Products on Amazon - 2023</h1>
+        </div>
+        <div class="intro">
+            <p>Discover the most popular and highly rated products available on Amazon in 2023. Whether you're searching for the latest tech gadgets, trendy fashion accessories, must-have home appliances, or innovative outdoor gear, this list showcases the best of the best. From innovative features to exceptional quality, these top 20 products have earned their place as the most sought-after items on Amazon this year.</p>
+        </div>
+        <div class="product-container">
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/51A-DliJBCL._AC_SL1282_.jpg" alt="Product 1">
+                <h2 class="product-title">MoonRay Slushy Maker Cup (Blue)</h2>
+                <p class="product-price">$14.99</p>
+                <p class="product-description"> A cup that can make delicious smoothies in an instant. No complicated machine required, everyone can make it at home and enjoy the process. This is a good gift for friends, colleagues, classmates, girlfriends and kids. Healthy DIY smoothie. You can turn any your favorite drink into a smoothie, enjoy and share the fruits of your labor..</p>
+                <a class="product-link" href="https://www.amazon.com/MoonRay-Smoothies-Easy-carry-Slushies-Homemade/dp/B096PVY7GF/?_encoding=UTF8&pd_rd_w=ls46w&content-id=amzn1.sym.dba1a2d0-88dc-4504-a5d7-10259373e587&pf_rd_p=dba1a2d0-88dc-4504-a5d7-10259373e587&pf_rd_r=8XN3TE1Z2B7GTKGV11CS&pd_rd_wg=2xpjc&pd_rd_r=a89fd0f5-a0ba-40b4-8e7b-f9d79cdf3fbb&ref_=pd_gw_ci_mcx_mr_hp_atf_m">Buy on Amazon</a>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/31KmJl5NaBL._AC_.jpg" alt="Product 1">
+                <h2 class="product-title">MoonRay Slushy Maker Cup (Yellow)</h2>
+                <p class="product-price">$14.99</p>
+                <p class="product-description"> A cup that can make delicious smoothies in an instant. No complicated machine required, everyone can make it at home and enjoy the process. This is a good gift for friends, colleagues, classmates, girlfriends and kids. Healthy DIY smoothie. You can turn any your favorite drink into a smoothie, enjoy and share the fruits of your labor..</p>
+                <a class="product-link" href="https://www.amazon.com/MoonRay-Smoothies-Easy-carry-Slushies-Homemade/dp/B096PVY7GF/?_encoding=UTF8&pd_rd_w=ls46w&content-id=amzn1.sym.dba1a2d0-88dc-4504-a5d7-10259373e587&pf_rd_p=dba1a2d0-88dc-4504-a5d7-10259373e587&pf_rd_r=8XN3TE1Z2B7GTKGV11CS&pd_rd_wg=2xpjc&pd_rd_r=a89fd0f5-a0ba-40b4-8e7b-f9d79cdf3fbb&ref_=pd_gw_ci_mcx_mr_hp_atf_m">Buy on Amazon</a>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/61tmB3LhDkL._AC_SL1475_.jpg" alt="Product 1">
+                <h2 class="product-title">TaiPhat Jar Sealer for Mason Jars</h2>
+                <p class="product-price">$15.99</p>
+                <p class="product-description"> 1x Wide Mouth Sealer 1x Regular Sealer 1x Hose Connector 1x Manual Air Pump 2x Wide Mouth Mason Jar Lids(86mm) 2x Regular Mouth Mason Jar Lids(70mm) 1x Bottle Opener 1x User Guide.</p>
+                <a class="product-link" href="https://www.amazon.com/TaiPhat-Attachment-Accessory-Compatible-FoodSaver/dp/B0BFVRSZ6H/ref=sr_1_1?crid=3EZEUFQV0LYSV&keywords=taiphat&qid=1688111184&s=home-garden&sprefix=taiphat%2Cgarden%2C349&sr=1-1">Buy on Amazon</a>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/51YP87e7PfL._SL1001_.jpg" alt="Product 1">
+                <h2 class="product-title">POTATO Straw Cup Spill Proof Sippy Cup with Handles and Strap</h2>
+                <p class="product-price">$16.99</p>
+                <p class="product-description"> Body(Tritan)
+                    Screw Cap/Snap Cap/Handle(Food Grade PP)
+                    Suction Tube/Sealing Ring(Food Grade Silicone)
+                    Sution Nozzle(Food Grade Silicone)</p>
+                <a class="product-link" href="https://www.amazon.com/POTATO-Handles-Toddler-babies-Months/dp/B08616LRLR/?_encoding=UTF8&pd_rd_w=ALrpT&content-id=amzn1.sym.b8021c1f-4893-4f33-9237-ab7efbc6b394&pf_rd_p=b8021c1f-4893-4f33-9237-ab7efbc6b394&pf_rd_r=QV350V11Q75T6X5SF11T&pd_rd_wg=iNrua&pd_rd_r=9f91ec84-15e6-42c5-8e38-4f3bfd2c3418&ref_=pd_gw_bmx_gp_u19i62do">Buy on Amazon</a>
+            </div>
+            <!-- Repeat the product-card div for the remaining 19 products -->
+            <!-- Remember to replace the placeholder data with actual product information -->
+        </div>
+        <div class="conclusion">
+            <p>That concludes our list of the top 20 products on Amazon in 2023. We hope you found this collection inspiring and helpful in your search for the latest and greatest products. Remember, these products represent the best in their respective categories and have garnered high ratings and positive reviews from customers worldwide.</p>
+            <p>Thank you for exploring the top 20 products on Amazon with us. Happy shopping!</p>
+        </div>
+    </div>
 </body>
 </html>
 {% endblock %}
+

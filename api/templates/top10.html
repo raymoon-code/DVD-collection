@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Top 20 Products on Amazon - 2023{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .intro {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-card {
+            width: 250px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .product-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product-title {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .product-price {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .product-description {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .product-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .product-link:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+          <h1>Top 10 Camping Products on Amazon - 2023</h1>
+        </div>
+        <div class="intro">
+          <p>Explore the top 10 camping products available on Amazon in 2023. Whether you're planning a weekend getaway, an adventurous hike, or a camping trip with family and friends, these products will elevate your outdoor experience. From durable tents to high-tech camping gear, these carefully curated items offer the best in functionality, comfort, and convenience.</p>
+        </div>
+        <div class="product-container">
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/71BaTdQSrCL._AC_SL1500_.jpg" alt="Product 1">
+                <h2 class="product-title">FUN ESSENTIALS Portable Toilet Kit For Adults</h2>
+                <p class="product-price">$76.99</p>
+                <p class="product-description">  Portable Toilet Kit For Adults, Pop Up Privacy Tent, X Large Camping Folding Toilet, 12 Toilet bags, 12 pack Liquid Waste Gel, Washable Foldable For Travel,RV,Outdoor</p>
+                <a class="product-link" href="https://www.amazon.com/FUN-ESSENTIALS-Portable-Washable-FUN010/dp/B0B5911MC1/ref=sr_1_1_sspa?crid=9IF4A9UXFK5B&keywords=camping+product&qid=1688121252&sprefix=camping+product%2Caps%2C205&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1">Buy on Amazon</a>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/71RGU401z2L._AC_SL1500_.jpg" alt="Product 1">
+                <h2 class="product-title">MalloMe Camping Cookware Mess Kit for Backpacking Gear</h2>
+                <p class="product-price">$19.99</p>
+                <p class="product-description"> Camping Cookware Mess Kit for Backpacking Gear – Camping Cooking Set - Backpack Camping Pot and Pans Set - Portable Camping Stove and Backpacking Stove Compatible - Camp Accessories Equipment.</p>
+                <a class="product-link" href="https://www.amazon.com/Cookware-Backpacking-Outdoors-Equipment-Lightweight/dp/B01743BX1A/ref=sr_1_5?keywords=camping%2Bcookware&qid=1688121623&sr=8-5&th=1">Buy on Amazon</a>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/71urdCM7LAL._AC_SL1500_.jpg" alt="Product 1">
+                <h2 class="product-title">Coleman Bottletop Propane Camping Stove</h2>
+                <p class="product-price">$29.99</p>
+                <p class="product-description"> Bottletop Propane Camping Stove, Portable 1-Burner Adjustable Stove with Wind Baffles, Pressure Regulator, and 10,000 BTUs of Power; Great for Camping, Hiking, Backpacking, & More.</p>
+                <a class="product-link" href="https://www.amazon.com/Coleman-Bottle-Propane-Stove-Green/dp/B0009PUR5E/ref=pd_bxgy_img_sccl_1/138-1141930-4311141?pd_rd_w=5RRcP&content-id=amzn1.sym.26a5c67f-1a30-486b-bb90-b523ad38d5a0&pf_rd_p=26a5c67f-1a30-486b-bb90-b523ad38d5a0&pf_rd_r=0C979QED2CMCFY2P5MY8&pd_rd_wg=g0X55&pd_rd_r=c3320316-3b17-4e53-81e2-136fb00a7510&pd_rd_i=B0009PUR5E&psc=1">Buy on Amazon</a>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="https://m.media-amazon.com/images/I/71jKW9Ld4VL._AC_SL1500_.jpg" alt="Product 1">
+                <h2 class="product-title">Coleman Carlsbad Dark Room Camping Tent with Screened Porch</h2>
+                <p class="product-price">$119.99</p>
+                <p class="product-description">Carlsbad Dark Room Camping Tent with Screened Porch, 4/6 Person Tent Blocks 90% of Sunlight and Keeps Inside Cool, Weatherproof Tent with Easy Setup and Screened-In Porch</p>
+                <a class="product-link" href="https://www.amazon.com/POTATO-Handles-Toddler-babies-Months/dp/B08616LRLR/?_encoding=UTF8&pd_rd_w=ALrpT&content-id=amzn1.sym.b8021c1f-4893-4f33-9237-ab7efbc6b394&pf_rd_p=b8021c1f-4893-4f33-9237-ab7efbc6b394&pf_rd_r=QV350V11Q75T6X5SF11T&pd_rd_wg=iNrua&pd_rd_r=9f91ec84-15e6-42c5-8e38-4f3bfd2c3418&ref_=pd_gw_bmx_gp_u19i62do">Buy on Amazon</a>
+            </div>
+            <!-- Repeat the product-card div for the remaining 19 products -->
+            <!-- Remember to replace the placeholder data with actual product information -->
+        </div>
+        <div class="conclusion">
+          <p>That concludes our list of the top 10 camping products on Amazon in 2023. With these innovative and reliable camping essentials, you'll be well-prepared for any outdoor adventure. From the comfort of your tent to the functionality of your gear, these products offer exceptional performance and are highly rated by outdoor enthusiasts.</p>
+          <p>We hope this list has inspired you to gear up for your next camping trip. Remember to explore the product links to learn more and make a purchase. Happy camping!</p>
+     
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
+
