@@ -72,7 +72,7 @@ button[type="submit"]:hover {
                 <label for="product">Products</label>
                 <select id="product" name="product" multiple>
                     {% for product in products %}
-                        <option value="{{ product.id }}">{{ product }}</option>
+                        <option value="{{ product.id }}">{{ product.title }}</option>
                     {% endfor %}
                 </select>
             </div>

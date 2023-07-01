@@ -20,7 +20,7 @@
                 <label for="product">Products</label>
                 <select id="product" name="product" multiple>
                     {% for product in products %}
-                        <option value="{{ product.id }}" {% if product.id in post.product_ids.split(',') %}selected{% endif %}>{{ product }}</option>
+                        <option value="{{ product.id }}" {% if product.id in post.product_ids.split(',') %}selected{% endif %}>{{ product.title }}</option>
                     {% endfor %}
                 </select>
             </div>

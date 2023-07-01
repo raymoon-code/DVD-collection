@@ -87,6 +87,11 @@ def view_products():
     products = Product.query.all()
     return render_template('products.html',user=current_user, products=products)
 
+@dvd.route('/top-10')
+def top_10():
+    products = Product.query.all()
+    return render_template('top10.html',user=current_user, products=products)
+
 
 @dvd.route('/view-dvds', methods=['GET', 'POST'])
 def view_dvds():

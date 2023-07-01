@@ -24,6 +24,7 @@
         margin-bottom: 40px;
     }
     .product-container {
+        
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -31,6 +32,8 @@
         padding: 20px;
     }
     .product-card {
+        margin-bottom:10px;
+        margin-right: 20px;
         width: 250px;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -73,6 +76,18 @@
     .product-link:hover {
         background-color: #0056b3;
     }
+
+    .edit-btn,
+    .remove-btn {
+        display: none;
+    }
+    {% if user.is_authenticated %}
+    .edit-btn,
+    .remove-btn {
+        display: inline;
+    }
+    {% endif %}
+    
     /* .edit-btn,
     .remove-btn {
         position: absolute;
@@ -88,6 +103,7 @@
     } */
     
     .container {
+        
         padding-bottom: 40px;
     }
     .edit-btn{
@@ -102,6 +118,13 @@
         font-size: 14px;
         cursor: pointer;
         transition: background-color 0.2s;
+    }
+    .p-ui{
+        display:flex;
+    }
+    .li-ui {
+        margin-top:30px;
+        margin-bottom:100px;
     }
     .remove-btn {
         position: absolute;
@@ -128,13 +151,13 @@
     }
 </style>
     <div class="container">
-        <h1>Posts</h1>
+        
         <ul>
             {% for post in posts %}
-                <li>
+                <li class="li-ui">
                     <h2>{{ post.title }}</h2>
                     <p>{{ post.opening }}</p>
-                    <ul>
+                    <ul class="p-ui">
                         {% set product_ids = post.product_ids.split(',') %}
                         {% for product in products %}
                             {% if product.id|string in product_ids %}
